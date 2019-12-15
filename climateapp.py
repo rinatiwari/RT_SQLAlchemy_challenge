@@ -27,14 +27,14 @@ session = Session(engine)
 #################################################
 # Flask Setup
 #################################################
-# @TODO: Initialize your Flask app here
+# Initialize your Flask app here
 app = Flask(__name__)
 
 #################################################
 # Flask Routes
 #################################################
 @app.route("/api/v1.0/precipitation")
-def precip():
+def precp():
 
 # Dictionary of TOBS Data
     """Return a list of dates and tobs"""
@@ -61,6 +61,8 @@ def stations():
     # Query all stations
     station_results = session.query(Station.station).all()
 
+    session.close()
+    
     # Convert list of tuples into normal list
     station_list = list(np.ravel(station_results))
 
